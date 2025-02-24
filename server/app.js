@@ -3,7 +3,7 @@ import config from "config"
 import userRouter from "./controllers/users/index.js"
 import beauticianRouter from "./controllers/beauticians/index.js"
 import "./utils/dbConnect.js";
-import publicRouter from "./public/index.js"
+import publicRouter from "./controllers/public/index.js"
 import authMiddleware from "./middleware/auth.js";
 
 const app = express()

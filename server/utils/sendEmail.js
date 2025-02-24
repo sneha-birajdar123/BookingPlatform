@@ -1,27 +1,28 @@
 import nodemailer from "nodemailer"
-import config from "config"
 
-let userEmail = config.get("EMAIL")
-let appPassword = config.get("APP_PASSWORD")
+const myEmail = "neha05844@gmail.com"
+const myPassword = "lrzvxohoidliwspy"
+const myHost = "smtp.gmail.com"
 
 async function sendEmail(emailData) {
     try {
-        let validateUser = nodemailer.createTransport({
-            host: "smtp.gmail.com",
+        let transpoter = nodemailer.createTransport({
+            host: myHost,
             port: 465,
             secure: true,
             auth: {
-                user: userEmail,
-                pass: appPassword
+                user: myEmail,
+                pass: myPassword
             }
         })
-        let sender = validateUser.sendMail({
-            from: emailData.from,
-            subject: emailData.subject,
+        let sender = await transpoter.sendMail({
+            from: myEmail,
             to: emailData.to,
-            text: emailData.text
+            subject: emailData.subject,
+            html: emailData.html
         })
-        console.log("Email send successfully");
+
+        console.log("Email send successfully", sender.messageId);
         
     } catch (error) {
         console.log(error);
