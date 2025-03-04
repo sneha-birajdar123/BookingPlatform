@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     fullname: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: true
+        // required: true
     },
     bookingDate: {
         date: Date

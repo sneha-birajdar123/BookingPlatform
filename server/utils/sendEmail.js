@@ -1,31 +1,39 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
-const myEmail = "neha05844@gmail.com"
-const myPassword = "lrzvxohoidliwspy"
-const myHost = "smtp.gmail.com"
+const myEmail = "neha06844@gmail.com";
+const myAppPassword = "hqtm drin dkaw dnug";  // Use the App Password generated
+const myHost = "smtp.gmail.com";
 
 async function sendEmail(emailData) {
     try {
-        let transpoter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport({
             host: myHost,
-            port: 465,
-            secure: true,
+            port: 465,  // SSL port for Gmail
+            secure: true,  // Use SSL
             auth: {
                 user: myEmail,
-                pass: myPassword
+                pass: myAppPassword  // Use the App Password here
             }
-        })
-        let sender = await transpoter.sendMail({
+        });
+
+        let sender = await transporter.sendMail({
             from: myEmail,
             to: emailData.to,
             subject: emailData.subject,
-            html: emailData.html
-        })
+            text: emailData.text
+        });
 
-        console.log("Email send successfully", sender.messageId);
+        console.log("Email sent successfully", sender.messageId);
         
     } catch (error) {
         console.log(error);
     }
 }
+
+// sendEmail({
+//     to: "suhail@code.in",
+//     subject: "Test Email",
+//     text: "Hello Test"
+// });
+
 export default sendEmail

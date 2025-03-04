@@ -5,10 +5,18 @@ import beauticianRouter from "./controllers/beauticians/index.js"
 import "./utils/dbConnect.js";
 import publicRouter from "./controllers/public/index.js"
 import authMiddleware from "./middleware/auth.js";
+import cors from "cors"
 
 const app = express()
 const PORT = config.get("PORT")
 
+
+app.use(cors(
+ {
+    origin: ["http://127.0.0.1:5173"]
+
+ }
+))
 app.use(express.json())
 
 app.get("/sneha", (req, res) => {
